@@ -1,2 +1,2 @@
 # rarstatus
-an slstatus clone but better
+a slstatus clone but better™
