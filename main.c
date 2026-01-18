@@ -184,12 +184,35 @@ void decorate(bool show_newline) {
 }
 
 
+void getHostname(){
+
+	FILE *file;
+	file = fopen("/etc/hostname","r");
+	char hostname[50];
+	
+	if (!file) {
+		printf("file not found: /etc/hostname.");
+		return;
+	}
+
+	while(fgets(hostname,sizeof(hostname),file)){
+		size_t len = strcspn(hostname, "\r\n");
+
+		if (len < sizeof(hostname)){
+			hostname[len] = '\0';
+		}
+		printf("%s",hostname);
+	}
+	
+	fclose(file);
+}
 
 
 void main_loop(){
 
     while (1) {
-
+	getHostname();
+	decorate(no_newline);
 	getuseddiskinfo(partition);
 	decorate(no_newline);
 	getkernelversion();
@@ -208,15 +231,13 @@ void main_loop(){
 
 }
 
-void volumelevelalsa(){
 
-}
 
 int main(int argc, char *argv[]) {
 
     for (int i = 1; i < argc; i++) {
         if (strcmp(argv[i], "-v") == 0) {
-            printf("rarstatus alpha\n");
+            printf("rarstatus beta\n");
             return 0;
         } else if (argv[i][0] == '-') {
             printf("undefined argument: %s\n", argv[i]);
