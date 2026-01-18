@@ -19,7 +19,7 @@ The following modules are currently implemented and functional:
 * **Kernel Version:** Uses the `uname` syscall to retrieve the `release` string directly from the kernel.
 * **Battery:** Reads capacity directly from `/sys/class/power_supply/`.
 * **Uptime:** Calculates system uptime in a human-readable format.
-* **DateTime:** Highly customizable date and time formatting using `strftime`.
+* **DateTime:** Highly customizable date and time formatting.
 
 ## ⚙️ How It Works
 
