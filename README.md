@@ -63,7 +63,7 @@ Note: you can still use rarstatus in dwm with piping it as shown above.
 Or for X11-based `dwm` using `xsetroot`:
 
 ```bash
-while true; do xsetroot -name "$(./rarstatus)"; sleep 1; done
+while true; do xsetroot -name "$(./rarstatus)"; done
 
 ```
 
