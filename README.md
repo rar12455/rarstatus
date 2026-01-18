@@ -31,7 +31,7 @@ Internally, `rarstatus` uses a modular approach where each system metric is fetc
 
 ## 🔧 Installation & Configuration
 
-Configuration is handled at compile-time via `config.h`.
+Configuration is generally handled at compile-time via `config.h` but you can configure `main.c` which is where main logic exists.
 
 1. **Clone the repo:**
 ```bash
