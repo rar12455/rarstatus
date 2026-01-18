@@ -59,7 +59,7 @@ To use `rarstatus` with a Wayland compositor like `dwl`:
 
 ```
 
-Or for X11-based `dwm` using `xsetroot`:
+Or for X11-based `dwm` (you can still use rarstatus in dwm with piping it as shown above) using `xsetroot`:
 
 ```bash
 while true; do xsetroot -name "$(./rarstatus)"; sleep 1; done
