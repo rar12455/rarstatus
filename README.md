@@ -58,8 +58,9 @@ To use `rarstatus` with a Wayland compositor like `dwl`:
 ./rarstatus | dwl
 
 ```
+Note: you can still use rarstatus in dwm with piping it as shown above.
 
-Or for X11-based `dwm` (you can still use rarstatus in dwm with piping it as shown above) using `xsetroot`:
+Or for X11-based `dwm` using `xsetroot`:
 
 ```bash
 while true; do xsetroot -name "$(./rarstatus)"; sleep 1; done
