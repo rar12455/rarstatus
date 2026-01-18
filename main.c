@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 200112L
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -6,6 +7,7 @@
 #include <stdbool.h>
 #include <sys/utsname.h>
 #include <sys/statvfs.h>
+#include <limits.h> // For HOST_NAME_MAX
 
 #include "config.h"
 
@@ -183,35 +185,24 @@ void decorate(bool show_newline) {
     }
 }
 
+void print_Hostname() {
+    #ifndef HOST_NAME_MAX
+        #define HOST_NAME_MAX 64
+    #endif
 
-void getHostname(){
+    char hostname[HOST_NAME_MAX];
 
-	FILE *file;
-	file = fopen("/etc/hostname","r");
-	char hostname[50];
-	
-	if (!file) {
-		printf("file not found: /etc/hostname.");
-		return;
-	}
-
-	while(fgets(hostname,sizeof(hostname),file)){
-		size_t len = strcspn(hostname, "\r\n");
-
-		if (len < sizeof(hostname)){
-			hostname[len] = '\0';
-		}
-		printf("%s",hostname);
-	}
-	
-	fclose(file);
+    if (gethostname(hostname, sizeof(hostname)) == 0) {
+        printf("%s", hostname);
+    } else {
+        printf("unknown-host");
+    }
 }
-
 
 void main_loop(){
 
     while (1) {
-	getHostname();
+	print_Hostname();
 	decorate(no_newline);
 	getuseddiskinfo(partition);
 	decorate(no_newline);
