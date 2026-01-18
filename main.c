@@ -1,4 +1,5 @@
 #define _POSIX_C_SOURCE 200112L
+#define _DEFAULT_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -8,6 +9,7 @@
 #include <sys/utsname.h>
 #include <sys/statvfs.h>
 #include <limits.h> // For HOST_NAME_MAX
+#include <sys/sysinfo.h>
 
 #include "config.h"
 
@@ -18,21 +20,15 @@
  */ 
 
 void uptime() {
-    FILE *file;
-    double raw_uptime;
 
-    file = fopen("/proc/uptime", "r");
-    if (!file) {
-        printf("error: /proc/uptime; file not found.\n");
+   struct sysinfo info;
+
+    if (sysinfo(&info) != 0) {
+        printf("UP:err");
         return;
     }
 
-    if (fscanf(file, "%lf", &raw_uptime)) {
-        // Success
-    }
-    
-    fclose(file);
-    long total_seconds = (long)raw_uptime;
+    long total_seconds = info.uptime; 
 
     if (total_seconds >= 3600) {
         int hours = total_seconds / 3600;
