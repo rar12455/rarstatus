@@ -20,6 +20,7 @@ The following modules are currently implemented and functional:
 * **Battery:** Reads capacity directly from `/sys/class/power_supply/`.
 * **Uptime:** Calculates system uptime in a human-readable format.
 * **DateTime:** Highly customizable date and time formatting.
+* Hostname: print hostname using efficient syscalls. 
 
 ## ⚙️ How It Works
 
