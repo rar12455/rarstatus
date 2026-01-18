@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include <sys/utsname.h>
 #include <sys/statvfs.h>
+
 #include "config.h"
 
 /* rarstatus - slstatus but better:
@@ -207,7 +208,9 @@ void main_loop(){
 
 }
 
+void volumelevelalsa(){
 
+}
 
 int main(int argc, char *argv[]) {
 
