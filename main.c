@@ -157,10 +157,11 @@ void getkernelversion(){
      }
 }
 
-void getuseddiskinfo(){
+void getuseddiskinfo(char partition[30]){
+
 	struct statvfs ds;
 
-	if (statvfs("/",&ds) == 0){
+	if (statvfs(partition,&ds) == 0){
 		unsigned long long total = (unsigned long long)ds.f_blocks * ds.f_frsize;
 		unsigned long long available = (unsigned long long)ds.f_bavail * ds.f_frsize;
 		unsigned long long used = total - available;
@@ -188,7 +189,7 @@ void main_loop(){
 
     while (1) {
 
-	getuseddiskinfo();
+	getuseddiskinfo(partition);
 	decorate(no_newline);
 	getkernelversion();
 	decorate(no_newline);

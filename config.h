@@ -12,3 +12,7 @@ static const bool iso_format   = true;
 
 /* Separator string */
 static const char *separator = " | ";
+
+/* disk partition mount point for disk usage look-up */
+
+char partition[30] = "/"; // by default it shows / i.e: root partition, type: df -h in terminal to see details.
