@@ -189,7 +189,7 @@ void print_Hostname() {
     char hostname[HOST_NAME_MAX];
 
     if (gethostname(hostname, sizeof(hostname)) == 0) {
-        printf("%s", hostname);
+        printf("HOST:%s", hostname);
     } else {
         printf("unknown-host");
     }
