@@ -181,19 +181,10 @@ void decorate(bool show_newline) {
     }
 }
 
-int main(int argc, char *argv[]) {
-    for (int i = 1; i < argc; i++) {
-        if (strcmp(argv[i], "-v") == 0) {
-            printf("rarstatus alpha\n");
-            return 0;
-        } else if (argv[i][0] == '-') {
-            printf("undefined argument: %s\n", argv[i]);
-            return 1;
-        } else {
-            printf("not an argument: %s\n", argv[i]);
-            return 1;
-        }
-    }
+
+
+
+void main_loop(){
 
     while (1) {
 
@@ -209,9 +200,29 @@ int main(int argc, char *argv[]) {
         decorate(no_newline);
         datetime(iso_format);
 
-        fflush(stdout);
-        sleep(INTERVAL);
+        fflush(stdout); // needed for print STDOUT
+        sleep(INTERVAL); /// sleep value
     }
 
+}
+
+
+
+int main(int argc, char *argv[]) {
+
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "-v") == 0) {
+            printf("rarstatus alpha\n");
+            return 0;
+        } else if (argv[i][0] == '-') {
+            printf("undefined argument: %s\n", argv[i]);
+            return 1;
+        } else {
+            printf("not an argument: %s\n", argv[i]);
+            return 1;
+        }
+    }
+
+    main_loop();
     return 0;
 }
