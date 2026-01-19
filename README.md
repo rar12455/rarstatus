@@ -1,6 +1,6 @@
 # rarstatus
 
-**A performance-oriented, Display Server agnostic and modern re-implementation of slstatus.**
+**A performance-oriented, Display Server agnostic modern implementation of slstatus.**
 
 `rarstatus` is a minimalist status monitor written in C, designed to be lightweight and fast. It follows the philosophy of "Doing one thing well" by fetching system information through direct Linux system calls and efficient file parsing, making it ideal for tiling window managers like `dwl` or `dwm`.
 
