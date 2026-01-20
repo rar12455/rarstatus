@@ -1,5 +1,6 @@
 #define _POSIX_C_SOURCE 200112L
 #define _DEFAULT_SOURCE
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -43,11 +44,10 @@ void uptime() {
 
 void readbatterycapacity() {
     FILE *file;
-    int capacitybat;
+    int capacitybat = 0;
 
     file = fopen("/sys/class/power_supply/BAT0/capacity", "r");
-
-    if (file && fscanf(file, "%d", &capacitybat)) {
+    if (file && fscanf(file, "%d", &capacitybat) == 1) { // NOLINT
         printf("BAT:%d%%", capacitybat);
     }
     else {
@@ -106,11 +106,11 @@ void getusedmeminfo() {
 
     while (fgets(line, sizeof(line), file) && found_count < 2) {
         if (strncmp(line, "MemTotal:", 9) == 0) {
-            sscanf(line, "MemTotal: %d", &MemTotal);
+            sscanf(line, "MemTotal: %d", &MemTotal); // NOLINT
             found_count++;
         } 
 	else if (strncmp(line, "MemAvailable:", 13) == 0) {
-            sscanf(line, "MemAvailable: %d", &MemAvailable);
+            sscanf(line, "MemAvailable: %d", &MemAvailable); // NOLINT
             found_count++;
         }
     }
@@ -138,7 +138,7 @@ void getfreememoryinfo() {
 
     while (fgets(line, sizeof(line), file)) {
         if (strncmp(line, "MemAvailable:", 13) == 0) {
-            sscanf(line, "MemAvailable: %d", &MemAvailable);
+            sscanf(line, "MemAvailable: %d", &MemAvailable); // NOLINT
         }
     }
     fclose(file);
