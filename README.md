@@ -20,7 +20,8 @@ The following modules are currently implemented and functional:
 * **Battery:** Reads capacity directly from `/sys/class/power_supply/`.
 * **Uptime:** Calculates system uptime in a human-readable format.
 * **DateTime:** Highly customizable date and time formatting.
-* **Hostname**: print hostname using efficient syscalls. 
+* **Hostname**: print hostname using efficient a syscall. 
+* **Brightness**: print Brightness value or percentage by parsing brightness file.
 
 ## ⚙️ How It Works
 
