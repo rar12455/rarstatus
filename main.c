@@ -174,6 +174,7 @@ void decorate(bool show_newline) {
 }
 
 void print_Hostname() {
+  
 #ifndef HOST_NAME_MAX
 #define HOST_NAME_MAX 64
 #endif
@@ -182,7 +183,8 @@ void print_Hostname() {
 
   if (gethostname(hostname, sizeof(hostname)) == 0) {
     printf("HOST:%s", hostname);
-  } else {
+  }
+  else {
     printf("unknown-host");
   }
 }
@@ -209,7 +211,8 @@ void brightness(int argc) {
     printf("BRI:%d", brightness_val);
 
     fclose(file);
-  } else {
+  } 
+  else {
     FILE *file;
     FILE *max_brightness_file;
     float brightness_val = 0;
@@ -246,9 +249,35 @@ void brightness(int argc) {
   }
 }
 
+void cat_a_file(){
+
+  FILE *file;
+  file = fopen(CAT_FILE_PATH,"r");
+  char buffer[CAT_FILE_LENGTH];
+
+  if (!file){
+    printf("file not found!: %s\n",CAT_FILE_PATH);
+    return;
+  }
+
+  fgets(buffer,sizeof(buffer),file);
+
+  size_t len = strcspn(buffer, "\r\n");
+
+  if (len < sizeof(buffer)) {
+      buffer[len] = '\0';
+  }
+
+  printf("%s",buffer);
+
+  fclose(file);
+}
+
 void main_loop() {
 
   while (1) {
+    cat_a_file();
+    decorate(no_newline);
     brightness(1);
     decorate(no_newline);
     print_Hostname();
@@ -265,7 +294,7 @@ void main_loop() {
     decorate(no_newline);
     datetime(iso_format);
 
-    putchar('\n');
+    putchar('\n'); // optional but recomended: skips to a newline when the text printed.
 
     fflush(stdout);  // needed for print STDOUT
     sleep(INTERVAL); /// sleep value
