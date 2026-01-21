@@ -206,7 +206,7 @@ void brightness(int argc) {
 
     fscanf(file, "%d", &brightness_val); // NOLINT
 
-    printf("%d", brightness_val);
+    printf("BRI:%d", brightness_val);
 
     fclose(file);
   } else {
@@ -242,7 +242,7 @@ void brightness(int argc) {
     fclose(max_brightness_file);
 
     brightness_perc = brightness_val / max_brightness_val * 100;
-    printf("%.0f%%", brightness_perc);
+    printf("BRI:%.0f%%", brightness_perc);
   }
 }
 
