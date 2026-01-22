@@ -35,7 +35,8 @@ void uptime() {
     int hours = total_seconds / 3600;
     int minutes = (total_seconds % 3600) / 60;
     printf("UP:%dh %dm", hours, minutes);
-  } else {
+  } 
+  else {
     int minutes = total_seconds / 60;
     printf("UP:%dm", minutes);
   }
@@ -45,15 +46,30 @@ void readbatterycapacity() {
   FILE *file;
   int capacitybat = 0;
 
-  file = fopen("/sys/class/power_supply/BAT0/capacity", "r");
-  if (file && fscanf(file, "%d", &capacitybat) == 1) { // NOLINT
-    printf("BAT:%d%%", capacitybat);
-  } else {
-    printf("error: /sys/class/power_supply/BAT0/capacity; file not found.\n");
+  file = fopen(BATTERY_PATH,"r");
+
+  if (file && fscanf(file, "%d", &capacitybat) == 1) {
+                                                         
+    FILE *status_file;
+    status_file = fopen(BATTERY_STATE_PATH,"r");
+    char status[25];
+
+    if (status_file && fscanf(status_file, "%s",&status) == 1){
+      if (strcmp("Discharging",status) == 0){
+          printf("BAT:%d%%-", capacitybat);
+      }
+      else {
+          printf("BAT:%d%%+", capacitybat);
+      }
+    }
+  } 
+  else {
+    printf("error: BATTERY_PATH; file not found.\n");
   }
 
-  if (file)
+  if (file){
     fclose(file);
+  }
 }
 
 void datetime(int iso_format_val) {
@@ -64,14 +80,16 @@ void datetime(int iso_format_val) {
 
   if (iso_format_val == 0) {
     printf("Local time: %s", asctime(local_time));
-  } else if (iso_format_val == 1) {
+  } 
+  else if (iso_format_val == 1) {
     printf("%d-%02d-%02d %02d:%02d",
            local_time->tm_year + 1900, // year
            local_time->tm_mon + 1,     // month
            local_time->tm_mday,        // day
            local_time->tm_hour,        // hour
            local_time->tm_min);        // minutes
-  } else {
+  }
+  else {
     printf("error: format error\n");
   }
 }
