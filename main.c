@@ -54,7 +54,7 @@ void readbatterycapacity() {
     status_file = fopen(BATTERY_STATE_PATH,"r");
     char status[25];
 
-    if (status_file && fscanf(status_file, "%s",&status) == 1){
+    if (status_file && fscanf(status_file, "%24s",status) == 1){
       if (strcmp("Discharging",status) == 0){
           printf("BAT:%d%%-", capacitybat);
       }
