@@ -318,11 +318,13 @@ void main_loop() {
     datetime(iso_format);
     decorate(show_newline);
 
-    fflush(stdout);  // needed for print STDOUT
-    sleep(INTERVAL); /// sleep value
     if (print_one_time == 1){
       return;
     }
+
+    fflush(stdout);  // needed for print STDOUT
+    sleep(INTERVAL); /// sleep value
+
   }
 }
 
