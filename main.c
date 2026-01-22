@@ -168,7 +168,8 @@ void getuseddiskinfo(char partition[30]) {
 void decorate(bool show_newline) {
   if (show_newline) {
     putchar('\n');
-  } else {
+  } 
+  else {
     fputs(separator, stdout);
   }
 }
@@ -256,7 +257,7 @@ void cat_a_file(){
   char buffer[CAT_FILE_LENGTH];
 
   if (!file){
-    printf("file not found!: %s\n",CAT_FILE_PATH);
+    printf("file not found!: %s",CAT_FILE_PATH);
     return;
   }
 
@@ -293,8 +294,7 @@ void main_loop() {
     uptime();
     decorate(no_newline);
     datetime(iso_format);
-
-    putchar('\n'); // optional but recomended: skips to a newline when the text printed.
+    decorate(show_newline);
 
     fflush(stdout);  // needed for print STDOUT
     sleep(INTERVAL); /// sleep value
