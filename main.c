@@ -12,6 +12,7 @@
 #include <unistd.h>
 
 #include "config.h"
+#include "util.h"
 
 /* rarstatus - slstatus but better:
  * DS agnostic
@@ -198,6 +199,7 @@ void brightness(int argc) {
    */
 
   if (argc == 0) {
+
     FILE *file;
     int brightness_val = 0;
     file = fopen(BRIGHTNESS_FILE_PATH, "r");
@@ -214,6 +216,7 @@ void brightness(int argc) {
     fclose(file);
   } 
   else {
+
     FILE *file;
     FILE *max_brightness_file;
     float brightness_val = 0;
@@ -277,6 +280,7 @@ void cat_a_file(){
 void main_loop() {
 
   while (1) {
+
     cat_a_file();
     decorate(no_newline);
     brightness(1);
@@ -298,6 +302,9 @@ void main_loop() {
 
     fflush(stdout);  // needed for print STDOUT
     sleep(INTERVAL); /// sleep value
+    if (print_one_time == 1){
+      return;
+    }
   }
 }
 
@@ -307,10 +314,21 @@ int main(int argc, char *argv[]) {
     if (strcmp(argv[i], "-v") == 0) {
       printf("rarstatus beta\n");
       return 0;
-    } else if (argv[i][0] == '-') {
+    }
+    else if (strcmp(argv[i], "-h") == 0){
+      printf("usage: [-v = version] [-h = help] [-1 print one time]\n");
+      return 0;
+    }
+    else if (strcmp(argv[i],"-1") == 0) {
+      print_one_time = 1;
+      main_loop();
+      return 0;
+    }
+    else if (argv[i][0] == '-') {
       printf("undefined argument: %s\n", argv[i]);
       return 1;
-    } else {
+    }
+    else {
       printf("not an argument: %s\n", argv[i]);
       return 1;
     }

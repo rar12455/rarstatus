@@ -3,7 +3,7 @@
 
 PREFIX = /usr/local
 CC = gcc
-# Adding -O2 and -flto as per your system preferences
+
 CFLAGS = -std=c99 -pedantic -Wall  -g -O2
 LDFLAGS = -flto
 
@@ -15,7 +15,7 @@ all: rarstatus
 .c.o:
 	${CC} -c ${CFLAGS} $<
 
-${OBJ}: config.h
+${OBJ}: config.h util.h
 
 rarstatus: ${OBJ}
 	${CC} -o $@ ${OBJ} ${LDFLAGS}
