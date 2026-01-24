@@ -22,7 +22,7 @@ The following modules are currently implemented and functional:
 * **DateTime:** Highly customizable date and time formatting.
 * **Hostname**: print hostname using efficient a syscall. 
 * **Brightness**: print Brightness value or percentage by parsing brightness file.
-* **cat a file**: print a arbituary file as you wish.
+* **Cat a file**: print a arbituary file as you wish.
 
 ## ⚙️ How It Works
 

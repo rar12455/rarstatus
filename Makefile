@@ -15,7 +15,7 @@ all: rarstatus
 .c.o:
 	${CC} -c ${CFLAGS} $<
 
-${OBJ}: config.h util.h
+${OBJ}: config.h util.h components/battery.c
 
 rarstatus: ${OBJ}
 	${CC} -o $@ ${OBJ} ${LDFLAGS}
