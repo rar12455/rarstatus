@@ -4,7 +4,7 @@
 PREFIX = /usr/local
 CC = gcc
 
-CFLAGS = -std=c99 -pedantic -Wall  -g -O2
+CFLAGS = -std=c99 -Wall -Wextra -pedantic -g -O2
 LDFLAGS = -flto
 
 SRC = main.c
@@ -15,7 +15,7 @@ all: rarstatus
 .c.o:
 	${CC} -c ${CFLAGS} $<
 
-${OBJ}: config.h util.h components/battery.c
+${OBJ}: config.h util.h
 
 rarstatus: ${OBJ}
 	${CC} -o $@ ${OBJ} ${LDFLAGS}
