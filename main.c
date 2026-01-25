@@ -16,21 +16,9 @@
 #include "config.h"
 #include "util.h"
 
-void print_human_readable_data(long long kib) {  /* NEEDED for Memory and Disk componenet(s) */
-  const char *units[] = {"Ki", "Mi", "Gi", "Ti", "Pi"};
-  double value = (double)kib;
-  int i = 0;
-
-  while (value >= 1024 && i < 4) {
-    value /= 1024;
-    i++;
-  }
-
-  printf("%.2f %sB", value, units[i]);
-}
-
 /* include components that you want */
 
+#include "components/print_human_readable_data.c" // NEEDED FOR memory and disk component(s)
 #include "components/battery.c"
 #include "components/brightness.c"
 #include "components/cat_a_file.c"
@@ -58,7 +46,7 @@ void main_loop() {
 
   /* the main loop of the program,
    * you can customize components by adding or removing them.
-   * if you don't use any disk or memory component(s) you can comment out print_human_readable_data function,
+   * if you don't use any disk or memory component(s) you can uninclude print_human_readable_data function,
    * since, it is unused function in that case.
    */
 
