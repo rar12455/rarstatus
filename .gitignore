@@ -1,8 +1,5 @@
 *.o
 rarstatus
 main
-.config.h.un~
-.gitignore.swp
-.main.c.un~
-components/.run_command.c.un~
-components/run_command.c
+*.un~
+*.swp
