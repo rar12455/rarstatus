@@ -81,7 +81,6 @@ void main_loop() {
   }
 }
 
-
 int main(int argc, char *argv[]) {
 
   for (int i = 1; i < argc; i++) {
@@ -110,4 +109,5 @@ int main(int argc, char *argv[]) {
 
   main_loop();
   return 0;
+
 }
