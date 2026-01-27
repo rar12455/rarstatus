@@ -29,6 +29,7 @@
 #include "components/getuseddiskinfo.c"
 #include "components/printhostname.c"
 #include "components/uptime.c"
+#include "components/run_command.c"
 
 void decorate(bool show_newline) {
   if (show_newline) {
@@ -38,7 +39,6 @@ void decorate(bool show_newline) {
     fputs(separator, stdout);
   }
 }
-
 
 void main_loop() {
 
@@ -50,6 +50,8 @@ void main_loop() {
    * since, it is unused function in that case.
    */
 
+	run_command();
+	decorate(no_newline);
     cat_a_file();
     decorate(no_newline);
     brightness(1);
@@ -78,6 +80,7 @@ void main_loop() {
 
   }
 }
+
 
 int main(int argc, char *argv[]) {
 

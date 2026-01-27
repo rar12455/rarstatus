@@ -23,6 +23,7 @@ The following modules are currently implemented and functional:
 * **Hostname**: print hostname using efficient a syscall. 
 * **Brightness**: print Brightness value or percentage by parsing brightness file.
 * **Cat a file**: print a arbituary file as you wish.
+* **Run command**: print output of the command as you wish.
 
 ## ⚙️ How It Works
 

@@ -24,3 +24,5 @@ char partition[30] = "/"; // by default it shows / (root partition) type: df -h 
 #define CAT_FILE_PATH "/home/USER/foo.txt" // cat a arbituary file that you wish. 
 #define CAT_FILE_LENGTH 64 // file character length: 1 = 1 character, 64 = 64 character capacity.
 
+/* run_command function */
+#define COMMAND_NAME "ls -l" // set a command name if you wish.
