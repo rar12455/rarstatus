@@ -85,7 +85,7 @@ int main(int argc, char *argv[]) {
 
   for (int i = 1; i < argc; i++) {
     if (strcmp(argv[i], "-v") == 0) {
-      printf("rarstatus beta\n");
+      printf("rarstatus v1.0\n");
       return 0;
     }
     else if (strcmp(argv[i], "-h") == 0){
