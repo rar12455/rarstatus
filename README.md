@@ -45,7 +45,7 @@ cd rarstatus
 ```
 
 
-2. **Edit `config.h` or `main.c` to change the update interval, separators, etc.
+2. **Edit `config.h` or `main.c` to change the update interval, separators, etc.**
 3. **Build:**
 ```bash
 make
@@ -62,7 +62,6 @@ To use `rarstatus` with a Wayland compositor like `dwl`:
 ./rarstatus | dwl
 
 ```
-Note: you can still use rarstatus in dwm with piping it as shown above.
 
 Or for X11-based `dwm` using `xsetroot`:
 
@@ -70,6 +69,7 @@ Or for X11-based `dwm` using `xsetroot`:
 while true; do xsetroot -name "$(./rarstatus)"; done
 
 ```
+Note: you can still use rarstatus in dwm with piping it as shown above.
 
 ## 🤝 Contributing
 
