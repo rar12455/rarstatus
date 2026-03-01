@@ -10,19 +10,24 @@ const bool iso_format = 1;
 const char *separator = " | ";
 
 /* disk partition mount point for disk usage look-up */
-char partition[30] = "/"; // by default it shows / (root partition) type: df -h in terminal to see mount points details.
+char partition[30] = "/"; // by default it shows / (root partition) type: df -h
+                          // in terminal to see mount points details.
 
 /* brightness file PATH's (needed for brightness function to function) */
 #define BRIGHTNESS_FILE_PATH "/sys/class/backlight/intel_backlight/brightness"
-#define MAX_BRIGHTNESS_FILE_PATH "/sys/class/backlight/intel_backlight/max_brightness"
+#define MAX_BRIGHTNESS_FILE_PATH                                               \
+        "/sys/class/backlight/intel_backlight/max_brightness"
 
-/*Battery PATH */ 
+/*Battery PATH */
 #define BATTERY_PATH "/sys/class/power_supply/BAT0/capacity"
 #define BATTERY_STATE_PATH "/sys/class/power_supply/BAT0/status"
 
 /* cat function */
-#define CAT_FILE_PATH "/home/USER/foo.txt" // cat a arbituary file that you wish. 
-#define CAT_FILE_LENGTH 64 // file character length: 1 = 1 character, 64 = 64 character capacity.
+#define CAT_FILE_PATH                                                          \
+        "/home/USER/foo.txt" // cat a arbituary file that you wish.
+#define CAT_FILE_LENGTH                                                        \
+        64 // file character length: 1 = 1 character, 64 = 64 character
+           // capacity.
 
 /* run_command function */
 #define COMMAND_NAME "ls -l" // set a command name if you wish.
