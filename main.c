@@ -18,96 +18,123 @@
 
 /* include components that you want */
 
-#include "components/print_human_readable_data.c" // NEEDED FOR memory and disk component(s)
 #include "components/battery.c"
 #include "components/brightness.c"
 #include "components/cat_a_file.c"
 #include "components/datetime.c"
 #include "components/freemem.c"
-#include "components/usedmem.c"
 #include "components/getkernelversion.c"
 #include "components/getuseddiskinfo.c"
+#include "components/print_human_readable_data.c" // NEEDED FOR memory and disk component(s)
 #include "components/printhostname.c"
-#include "components/uptime.c"
 #include "components/run_command.c"
+#include "components/uptime.c"
+#include "components/usedmem.c"
 
-void decorate(bool show_newline) {
-  if (show_newline) {
-    putchar('\n');
-  } 
-  else {
-    fputs(separator, stdout);
-  }
+void
+string()
+{
+        // Just put the fries in the bag bro!
+        int i;
+        int main[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        for (i = 0; i < 10; i++)
+        {
+                printf("%d", i);
+        }
 }
 
-void main_loop() {
-
-  while (1) {
-
-  /* the main loop of the program,
-   * you can customize components by adding or removing them.
-   * if you don't use any disk or memory component(s) you can uninclude print_human_readable_data function,
-   * since, it is unused function in that case.
-   */
-
-	run_command();
-	decorate(no_newline);
-    cat_a_file();
-    decorate(no_newline);
-    brightness(1);
-    decorate(no_newline);
-    print_Hostname();
-    decorate(no_newline);
-    getuseddiskinfo(partition);
-    decorate(no_newline);
-    getkernelversion();
-    decorate(no_newline);
-    getusedmeminfo();
-    decorate(no_newline);
-    readbatterycapacity();
-    decorate(no_newline);
-    uptime();
-    decorate(no_newline);
-    datetime(iso_format);
-    decorate(show_newline);
-
-    if (print_one_time == 1){
-      return;
-    }
-
-    fflush(stdout);  // needed for print STDOUT
-    sleep(INTERVAL); /// sleep value
-
-  }
+void
+decorate(bool show_newline)
+{
+        if (show_newline)
+        {
+                putchar('\n');
+        }
+        else
+        {
+                fputs(separator, stdout);
+        }
 }
 
-int main(int argc, char *argv[]) {
+void
+main_loop()
+{
 
-  for (int i = 1; i < argc; i++) {
-    if (strcmp(argv[i], "-v") == 0) {
-      printf("rarstatus v1.0\n");
-      return 0;
-    }
-    else if (strcmp(argv[i], "-h") == 0){
-      printf("usage: [-v = version] [-h = help] [-1 print one time]\n");
-      return 0;
-    }
-    else if (strcmp(argv[i],"-1") == 0) {
-      print_one_time = 1;
-      main_loop();
-      return 0;
-    }
-    else if (argv[i][0] == '-') {
-      printf("undefined argument: %s\n", argv[i]);
-      return 1;
-    }
-    else {
-      printf("not an argument: %s\n", argv[i]);
-      return 1;
-    }
-  }
+        while (1)
+        {
 
-  main_loop();
-  return 0;
+                /* the main loop of the program,
+                 * you can customize components by adding or removing them.
+                 * if you don't use any disk or memory component(s) you can
+                 * uninclude print_human_readable_data function, since, it is
+                 * unused function in that case.
+                 */
 
+                run_command();
+                decorate(no_newline);
+                cat_a_file();
+                decorate(no_newline);
+                brightness(1);
+                decorate(no_newline);
+                print_Hostname();
+                decorate(no_newline);
+                getuseddiskinfo(partition);
+                decorate(no_newline);
+                getkernelversion();
+                decorate(no_newline);
+                getusedmeminfo();
+                decorate(no_newline);
+                readbatterycapacity();
+                decorate(no_newline);
+                uptime();
+                decorate(no_newline);
+                datetime(iso_format);
+                decorate(show_newline);
+
+                if (print_one_time == 1)
+                {
+                        return;
+                }
+
+                fflush(stdout);  // needed for print STDOUT
+                sleep(INTERVAL); /// sleep value
+        }
+}
+
+int
+main(int argc, char *argv[])
+{
+
+        for (int i = 1; i < argc; i++)
+        {
+                if (strcmp(argv[i], "-v") == 0)
+                {
+                        printf("rarstatus v1.0\n");
+                        return 0;
+                }
+                else if (strcmp(argv[i], "-h") == 0)
+                {
+                        printf("usage: [-v = version] [-h = help] [-1 print "
+                               "one time]\n");
+                        return 0;
+                }
+                else if (strcmp(argv[i], "-1") == 0)
+                {
+                        print_one_time = 1;
+                        main_loop();
+                        return 0;
+                }
+                else if (argv[i][0] == '-')
+                {
+                        printf("undefined argument: %s\n", argv[i]);
+                        return 1;
+                }
+                else
+                {
+                        printf("not an argument: %s\n", argv[i]);
+                        return 1;
+                }
+        }
+        main_loop();
+        return 0;
 }

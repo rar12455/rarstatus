@@ -1,23 +1,27 @@
-void cat_a_file(){
+void
+cat_a_file()
+{
 
-  FILE *file;
-  file = fopen(CAT_FILE_PATH,"r");
-  char buffer[CAT_FILE_LENGTH];
+        FILE *file;
+        file = fopen(CAT_FILE_PATH, "r");
+        char buffer[CAT_FILE_LENGTH];
 
-  if (!file){
-    printf("file not found!: %s",CAT_FILE_PATH);
-    return;
-  }
+        if (!file)
+        {
+                printf("file not found!: %s", CAT_FILE_PATH);
+                return;
+        }
 
-  fgets(buffer,sizeof(buffer),file);
+        fgets(buffer, sizeof(buffer), file);
 
-  size_t len = strcspn(buffer, "\r\n");
+        size_t len = strcspn(buffer, "\r\n");
 
-  if (len < sizeof(buffer)) {
-      buffer[len] = '\0';
-  }
+        if (len < sizeof(buffer))
+        {
+                buffer[len] = '\0';
+        }
 
-  printf("%s",buffer);
+        printf("%s", buffer);
 
-  fclose(file);
+        fclose(file);
 }
