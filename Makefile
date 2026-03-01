@@ -1,19 +1,31 @@
-# rarstatus - minimalist status bar for dwl/dwm
-# Logic: Use system-wide CFLAGS for optimization
-
 PREFIX = /usr/local
 CC = gcc
 
-CFLAGS = -std=c99 -Wall -Wextra -pedantic -g -O2
+CFLAGS  = -std=c99 -Wall -Wextra -pedantic -g -O2
 LDFLAGS = -flto
 
-SRC = main.c
+SRC = main.c \
+      config.c \
+      util.c \
+      components/battery.c \
+      components/brightness.c \
+      components/cat_a_file.c \
+      components/datetime.c \
+      components/freemem.c \
+      components/getkernelversion.c \
+      components/getuseddiskinfo.c \
+      components/print_human_readable_data.c \
+      components/printhostname.c \
+      components/run_command.c \
+      components/uptime.c \
+      components/usedmem.c
+
 OBJ = ${SRC:.c=.o}
 
 all: rarstatus
 
 .c.o:
-	${CC} -c ${CFLAGS} $<
+	${CC} -c ${CFLAGS} $< -o $@
 
 ${OBJ}: config.h util.h
 

@@ -1,5 +1,10 @@
-/* util.h  - NEEDED var definitions for main.c */
+#ifndef UTIL_H
+#define UTIL_H
 
-int        print_one_time = 0;
-const bool show_newline   = 1;
-const bool no_newline     = 0;
+#include <stdbool.h>
+
+extern int        print_one_time;
+extern const bool show_newline;
+extern const bool no_newline;
+
+#endif

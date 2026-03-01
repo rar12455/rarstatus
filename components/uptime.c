@@ -1,8 +1,9 @@
+#include <stdio.h>
+#include <sys/sysinfo.h>
 
 void
 uptime()
 {
-
         struct sysinfo info;
 
         if (sysinfo(&info) != 0)

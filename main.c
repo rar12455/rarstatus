@@ -1,7 +1,7 @@
 #define _POSIX_C_SOURCE 200112L
 #define _DEFAULT_SOURCE
 
-#include <limits.h> // For HOST_NAME_MAX
+#include <limits.h> /* For HOST_NAME_MAX */
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
@@ -18,30 +18,18 @@
 
 /* include components that you want */
 
-#include "components/battery.c"
-#include "components/brightness.c"
-#include "components/cat_a_file.c"
-#include "components/datetime.c"
-#include "components/freemem.c"
-#include "components/getkernelversion.c"
-#include "components/getuseddiskinfo.c"
-#include "components/print_human_readable_data.c" // NEEDED FOR memory and disk component(s)
-#include "components/printhostname.c"
-#include "components/run_command.c"
-#include "components/uptime.c"
-#include "components/usedmem.c"
-
-void
-string()
-{
-        // Just put the fries in the bag bro!
-        int i;
-        int main[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        for (i = 0; i < 10; i++)
-        {
-                printf("%d", i);
-        }
-}
+#include "components/battery.h"
+#include "components/brightness.h"
+#include "components/cat_a_file.h"
+#include "components/datetime.h"
+#include "components/freemem.h"
+#include "components/getkernelversion.h"
+#include "components/getuseddiskinfo.h"
+#include "components/print_human_readable_data.h" /* NEEDED FOR memory and disk component(s) */
+#include "components/printhostname.h"
+#include "components/run_command.h"
+#include "components/uptime.h"
+#include "components/usedmem.h"
 
 void
 decorate(bool show_newline)
@@ -65,18 +53,16 @@ main_loop()
 
                 /* the main loop of the program,
                  * you can customize components by adding or removing them.
-                 * if you don't use any disk or memory component(s) you can
-                 * uninclude print_human_readable_data function, since, it is
-                 * unused function in that case.
                  */
 
                 run_command();
                 decorate(no_newline);
+                getfreememoryinfo();
                 cat_a_file();
                 decorate(no_newline);
                 brightness(1);
                 decorate(no_newline);
-                print_Hostname();
+                print_hostname();
                 decorate(no_newline);
                 getuseddiskinfo(partition);
                 decorate(no_newline);

@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <string.h>
+
+#include "print_human_readable_data.h"
 
 void
 getfreememoryinfo()
@@ -16,8 +20,7 @@ getfreememoryinfo()
         {
                 if (strncmp(line, "MemAvailable:", 13) == 0)
                 {
-                        sscanf(line, "MemAvailable: %d",
-                               &MemAvailable); // NOLINT
+                        sscanf(line, "MemAvailable: %d", &MemAvailable);
                 }
         }
         fclose(file);

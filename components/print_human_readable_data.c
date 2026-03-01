@@ -1,3 +1,4 @@
+#include <stdio.h>
 
 void
 print_human_readable_data(long long kib)

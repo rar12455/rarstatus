@@ -1,33 +1,29 @@
-/* Configuration for rarstatus */
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#include <stdbool.h>
 
 /* Update interval in seconds */
 #define INTERVAL 1
 
-/* iso_format */
-const bool iso_format = 1;
+/* Brightness file paths */
+#define BRIGHTNESS_FILE_PATH     "/sys/class/backlight/intel_backlight/brightness"
+#define MAX_BRIGHTNESS_FILE_PATH "/sys/class/backlight/intel_backlight/max_brightness"
 
-/* Separator string */
-const char *separator = " | ";
-
-/* disk partition mount point for disk usage look-up */
-char partition[30] = "/"; // by default it shows / (root partition) type: df -h
-                          // in terminal to see mount points details.
-
-/* brightness file PATH's (needed for brightness function to function) */
-#define BRIGHTNESS_FILE_PATH "/sys/class/backlight/intel_backlight/brightness"
-#define MAX_BRIGHTNESS_FILE_PATH                                               \
-        "/sys/class/backlight/intel_backlight/max_brightness"
-
-/*Battery PATH */
-#define BATTERY_PATH "/sys/class/power_supply/BAT0/capacity"
+/* Battery paths */
+#define BATTERY_PATH       "/sys/class/power_supply/BAT0/capacity"
 #define BATTERY_STATE_PATH "/sys/class/power_supply/BAT0/status"
 
-/* cat function */
-#define CAT_FILE_PATH                                                          \
-        "/home/USER/foo.txt" // cat a arbituary file that you wish.
-#define CAT_FILE_LENGTH                                                        \
-        64 // file character length: 1 = 1 character, 64 = 64 character
-           // capacity.
+/* cat_a_file settings */
+#define CAT_FILE_PATH   "/home/USER/foo.txt"
+#define CAT_FILE_LENGTH 64
 
-/* run_command function */
-#define COMMAND_NAME "ls -l" // set a command name if you wish.
+/* run_command setting */
+#define COMMAND_NAME "ls -l"
+
+/* Variables defined in config.c */
+extern const bool  iso_format;
+extern const char *separator;
+extern char        partition[30];
+
+#endif

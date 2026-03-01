@@ -1,8 +1,11 @@
+#include <stdio.h>
+#include <sys/statvfs.h>
+
+#include "print_human_readable_data.h"
 
 void
 getuseddiskinfo(char partition[30])
 {
-
         struct statvfs ds;
 
         if (statvfs(partition, &ds) == 0)

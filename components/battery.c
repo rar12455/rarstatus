@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <string.h>
+
+#include "../config.h"
 
 void
 readbatterycapacity()
@@ -9,7 +13,6 @@ readbatterycapacity()
 
         if (file && fscanf(file, "%d", &capacitybat) == 1)
         {
-
                 FILE *status_file;
                 status_file = fopen(BATTERY_STATE_PATH, "r");
                 char status[25];
@@ -24,6 +27,7 @@ readbatterycapacity()
                         {
                                 printf("BAT:%d%%+", capacitybat);
                         }
+                        fclose(status_file);
                 }
         }
         else

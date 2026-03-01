@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <string.h>
+
+#include "print_human_readable_data.h"
 
 void
 getusedmeminfo()
@@ -18,13 +22,13 @@ getusedmeminfo()
         {
                 if (strncmp(line, "MemTotal:", 9) == 0)
                 {
-                        sscanf(line, "MemTotal: %d", &MemTotal); // NOLINT
+                        sscanf(line, "MemTotal: %d", &MemTotal); /* NOLINT */
                         found_count++;
                 }
                 else if (strncmp(line, "MemAvailable:", 13) == 0)
                 {
                         sscanf(line, "MemAvailable: %d",
-                               &MemAvailable); // NOLINT
+                               &MemAvailable); /* NOLINT */
                         found_count++;
                 }
         }

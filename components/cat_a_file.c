@@ -1,7 +1,11 @@
+#include <stdio.h>
+#include <string.h>
+
+#include "../config.h"
+
 void
 cat_a_file()
 {
-
         FILE *file;
         file = fopen(CAT_FILE_PATH, "r");
         char buffer[CAT_FILE_LENGTH];
