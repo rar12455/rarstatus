@@ -48,7 +48,7 @@ cd rarstatus
 2. **Edit `config.h` or `main.c` to change the update interval, separators, etc.**
 3. **Build:**
 ```bash
-make
+sudo make clean install
 
 ```
 
