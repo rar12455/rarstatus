@@ -18,7 +18,8 @@ SRC = main.c \
       components/printhostname.c \
       components/run_command.c \
       components/uptime.c \
-      components/usedmem.c
+      components/usedmem.c \
+	  components/cpu_usage.c
 
 OBJ = ${SRC:.c=.o}
 
