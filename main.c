@@ -94,8 +94,10 @@ main_loop()
                 decorate(no_newline);
                 datetime(iso_format);
                 decorate(no_newline);
-                cpu_usage();
-                decorate(show_newline);
+                print_cpu_usage(0); /* percision: change '0' to other number if
+                                 you want some percision for cpu usage. */
+
+                decorate(show_newline); /* adds newline */
 
                 if (print_one_time == 1)
                 {
