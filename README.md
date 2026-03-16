@@ -1,6 +1,6 @@
 # rarstatus
 
-**A performance-oriented, Display Server agnostic modern implementation of slstatus.**
+**A performance-oriented, Display Server agnostic, modern implementation of slstatus.**
 
 `rarstatus` is a minimalist status monitor written in C, designed to be lightweight and fast. It follows the philosophy of "Doing one thing well" by fetching system information through direct Linux system calls and efficient file parsing, making it ideal for tiling window managers like `dwl` or `dwm`.
 
@@ -24,6 +24,7 @@ The following modules are currently implemented and functional:
 * **Brightness**: print Brightness value or percentage by parsing brightness file.
 * **Cat a file**: print a arbituary file as you wish.
 * **Run command**: print output of the command as you wish.
+* **Cpu usage**: print cpu usage in percantage.
 
 ##  How It Works
 
