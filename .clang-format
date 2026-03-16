@@ -7,9 +7,9 @@ BreakBeforeBraces: Allman
 AlwaysBreakAfterReturnType: AllDefinitions
 
 # Tab and Indentation settings
-UseTab: Never              # Use spaces to represent tabs
-IndentWidth: 8             # "2 tabs" where each is 4 spaces = 8 spaces total
-TabWidth: 4                # Define the logical width of a single tab
+UseTab: Never                                            
+IndentWidth: 16                                                               
+TabWidth: 16                                                          
 
 # General cleanup
 ColumnLimit: 80
