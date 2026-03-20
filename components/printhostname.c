@@ -11,14 +11,14 @@
 void
 print_hostname()
 {
-                char hostname[HOST_NAME_MAX];
+        char hostname[HOST_NAME_MAX];
 
-                if (gethostname(hostname, sizeof(hostname)) == 0)
-                {
-                                printf("HOST:%s", hostname);
-                }
-                else
-                {
-                                printf("unknown-host");
-                }
+        if (gethostname(hostname, sizeof(hostname)) == 0)
+        {
+                printf("HOST:%s", hostname);
+        }
+        else
+        {
+                printf("unknown-host");
+        }
 }

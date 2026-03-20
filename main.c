@@ -52,103 +52,100 @@
 void
 decorate(bool show_newline)
 {
-                if (show_newline)
-                {
-                                putchar('\n');
-                }
-                else
-                {
-                                fputs(separator, stdout);
-                }
+        if (show_newline)
+        {
+                putchar('\n');
+        }
+        else
+        {
+                fputs(separator, stdout);
+        }
 }
 
 void
 main_loop()
 {
 
-                while (1)
+        while (1)
+        {
+
+                /* the main loop of the program,
+                 * you can customize components by adding or
+                 * removing them.
+                 */
+
+                run_command();
+                decorate(no_newline);
+                getfreememoryinfo();
+                cat_a_file();
+                decorate(no_newline);
+                brightness(1);
+                decorate(no_newline);
+                print_hostname();
+                decorate(no_newline);
+                getuseddiskinfo(partition);
+                decorate(no_newline);
+                getkernelversion();
+                decorate(no_newline);
+                getusedmeminfo();
+                decorate(no_newline);
+                readbatterycapacity();
+                decorate(no_newline);
+                uptime();
+                decorate(no_newline);
+                datetime(iso_format);
+                decorate(no_newline);
+                print_cpu_usage(0); /* percision: change '0' to
+                                 other number if you want some
+                                 percision for cpu usage. */
+
+                decorate(show_newline); /* adds newline */
+
+                if (print_one_time == 1)
                 {
-
-                                /* the main loop of the program,
-                                 * you can customize components by adding or
-                                 * removing them.
-                                 */
-
-                                run_command();
-                                decorate(no_newline);
-                                getfreememoryinfo();
-                                cat_a_file();
-                                decorate(no_newline);
-                                brightness(1);
-                                decorate(no_newline);
-                                print_hostname();
-                                decorate(no_newline);
-                                getuseddiskinfo(partition);
-                                decorate(no_newline);
-                                getkernelversion();
-                                decorate(no_newline);
-                                getusedmeminfo();
-                                decorate(no_newline);
-                                readbatterycapacity();
-                                decorate(no_newline);
-                                uptime();
-                                decorate(no_newline);
-                                datetime(iso_format);
-                                decorate(no_newline);
-                                print_cpu_usage(0); /* percision: change '0' to
-                                                 other number if you want some
-                                                 percision for cpu usage. */
-
-                                decorate(show_newline); /* adds newline */
-
-                                if (print_one_time == 1)
-                                {
-                                                return;
-                                }
-
-                                fflush(stdout);  // needed for print STDOUT
-                                sleep(INTERVAL); /// sleep value
+                        return;
                 }
+
+                fflush(stdout);  // needed for print STDOUT
+                sleep(INTERVAL); /// sleep value
+        }
 }
 
 int
 main(int argc, char *argv[])
 {
 
-                for (int i = 1; i < argc; i++)
+        for (int i = 1; i < argc; i++)
+        {
+                if (strcmp(argv[i], "-v") == 0)
                 {
-                                if (strcmp(argv[i], "-v") == 0)
-                                {
-                                                printf("rarstatus v1.0\n");
-                                                return 0;
-                                }
-                                else if (strcmp(argv[i], "-h") == 0)
-                                {
-                                                printf("usage: [-v = version] "
-                                                       "[-h = help] [-1 print "
-                                                       "one time]\n");
-                                                return 0;
-                                }
-                                else if (strcmp(argv[i], "-1") == 0)
-                                {
-                                                print_one_time = 1;
-                                                main_loop();
-                                                return 0;
-                                }
-                                else if (argv[i][0] == '-')
-                                {
-                                                printf(
-                                                    "undefined argument: %s\n",
-                                                    argv[i]);
-                                                return 1;
-                                }
-                                else
-                                {
-                                                printf("not an argument: %s\n",
-                                                       argv[i]);
-                                                return 1;
-                                }
+                        printf("rarstatus v1.0\n");
+                        return 0;
                 }
-                main_loop();
-                return 0;
+                else if (strcmp(argv[i], "-h") == 0)
+                {
+                        printf("usage: [-v = version] "
+                               "[-h = help] [-1 print "
+                               "one time]\n");
+                        return 0;
+                }
+                else if (strcmp(argv[i], "-1") == 0)
+                {
+                        print_one_time = 1;
+                        main_loop();
+                        return 0;
+                }
+                else if (argv[i][0] == '-')
+                {
+                        printf("undefined argument: %s\n", argv[i]);
+                        return 1;
+                }
+                else
+                {
+                        printf("not an argument: %s\n", argv[i]);
+                        return 1;
+                }
+        }
+        main_loop();
+        return 0;
 }

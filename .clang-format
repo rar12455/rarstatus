@@ -8,8 +8,8 @@ AlwaysBreakAfterReturnType: AllDefinitions
 
 # Tab and Indentation settings
 UseTab: Never                                            
-IndentWidth: 16                                                               
-TabWidth: 16                                                          
+IndentWidth: 8                                                               
+TabWidth: 8                                                          
 
 # General cleanup
 ColumnLimit: 80
