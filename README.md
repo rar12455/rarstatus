@@ -34,6 +34,25 @@ Internally, `rarstatus` uses a modular approach where each system metric is fetc
 2. **Data Processing:** Raw byte values are passed to `print_human_readable_data()`, which handles conversion to KiB, MiB, or GiB dynamically.
 3. **Output Decoration:** The `decorate()` function manages separators between modules without unnecessary string concatenation.
 
+## Compatibility & Supported Operating Systems
+
+### Supported operating systems
+
+'rarstatus' (currently) only works on GNU/Linux systems,while it doesn't have a major linux-spesific dependency, some components needs to rewritten to be usable on respected UNIX-like operating systems (such as BSD's). The OpenBSD support is planned and likely, it will be ready in a short ammount of time.
+
+### Libc and display server compatibility
+
+'rarstatus' is also musl-libc compatible,this makes it also a good candidate for static linking, which is **recommended**, it also supports Wayland/X11 out of the box without any configuration, virtually any system has a working STDIN/STDOUT, can access system information.
+
+As the table seen below summarizes the information:
+
+| Feature | Status |
+| :--- | :--- |
+| **Musl/Glibc** | Works ✅ |
+| **Wayland/X11** | Works ✅ |
+| **BSD support?** | Mostly broken ❌ |
+| **OpenBSD support?** | Planned ⚠️ |
+
 ##  Installation & Configuration
 
 Configuration is generally handled at compile-time via `config.h` but you can configure `main.c` which is where main logic exists.
