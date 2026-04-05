@@ -1,5 +1,5 @@
 PREFIX = /usr/local
-CC = gcc
+CC = cc
 
 CFLAGS  = -std=c99 -Wall -Wextra -pedantic -g -O2
 LDFLAGS = -flto

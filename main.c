@@ -25,7 +25,6 @@
 #include <sys/statvfs.h>
 #include <sys/sysinfo.h>
 #include <sys/utsname.h>
-#include <time.h>
 #include <unistd.h>
 
 /* config and utility file */
@@ -43,7 +42,6 @@
 #include "components/freemem.h"
 #include "components/getkernelversion.h"
 #include "components/getuseddiskinfo.h"
-#include "components/print_human_readable_data.h" /* NEEDED FOR memory and disk component(s) */
 #include "components/printhostname.h"
 #include "components/run_command.h"
 #include "components/uptime.h"
