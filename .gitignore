@@ -1,5 +1,7 @@
 *.o
 rarstatus
 main
+bprintf
 *.un~
 *.swp
+*.out
