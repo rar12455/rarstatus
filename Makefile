@@ -7,19 +7,19 @@ LDFLAGS = -flto
 SRC = main.c \
       config.c \
       util.c \
-      components/battery.c \
-      components/brightness.c \
-      components/cat_a_file.c \
-      components/datetime.c \
-      components/freemem.c \
-      components/getkernelversion.c \
-      components/getuseddiskinfo.c \
-      components/print_human_readable_data.c \
-      components/printhostname.c \
-      components/run_command.c \
-      components/uptime.c \
-      components/usedmem.c \
-      components/cpu_usage.c
+      components/implementation/battery.c \
+      components/implementation/brightness.c \
+      components/implementation/cat_a_file.c \
+      components/implementation/datetime.c \
+      components/implementation/freemem.c \
+      components/implementation/getkernelversion.c \
+      components/implementation/getuseddiskinfo.c \
+      components/implementation/print_human_readable_data.c \
+      components/implementation/printhostname.c \
+      components/implementation/run_command.c \
+      components/implementation/uptime.c \
+      components/implementation/usedmem.c \
+      components/implementation/cpu_usage.c
 
 OBJ = ${SRC:.c=.o}
 

@@ -1,7 +1,11 @@
+/*
+ * See LICENSE file for copyright and license details.
+ */
+
 #include <stdio.h>
 #include <sys/statvfs.h>
 
-#include "print_human_readable_data.h"
+#include "../print_human_readable_data.h"
 
 void
 getuseddiskinfo(char partition[30])

@@ -1,4 +1,8 @@
-#include "cpu_usage.h"
+/*
+ * See LICENSE file for copyright and license details.
+ */
+
+#include "../cpu_usage.h"
 #include <stdio.h>
 #include <unistd.h>
 

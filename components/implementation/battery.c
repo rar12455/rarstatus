@@ -1,7 +1,11 @@
+/*
+ * See LICENSE file for copyright and license details.
+ */
+
 #include <stdio.h>
 #include <string.h>
 
-#include "../config.h"
+#include "../../config.h"
 
 void
 readbatterycapacity()

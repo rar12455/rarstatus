@@ -1,3 +1,7 @@
+/*
+ * See LICENSE file for copyright and license details.
+ */
+
 #ifndef CPU_USAGE_H
 #define CPU_USAGE_H
 

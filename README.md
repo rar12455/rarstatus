@@ -89,7 +89,6 @@ Or for X11-based `dwm` using `xsetroot`:
 while true; do xsetroot -name "$(./rarstatus)"; done
 
 ```
-Note: you can still use rarstatus in dwm with piping it as shown above.
 
 ##  Contributing
 
@@ -97,4 +96,5 @@ Since this is a hobbyist project, contributions are welcome. If you have a more 
 
 ##  License
 
+**NOTE:** This project is inspired by the modularity of slstatus, but it is written from scratch for performance and display-server agnosticism, thus it does not include **ISC License** notice.
 This project is licensed under the **GPL v3** License - see the LICENSE file for details.
