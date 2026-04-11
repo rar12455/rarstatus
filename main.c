@@ -116,7 +116,7 @@ main(int argc, char *argv[])
         {
                 if (strcmp(argv[i], "-v") == 0)
                 {
-                        printf("rarstatus v1.0\n");
+                        printf("rarstatus v1.1\n");
                         return 0;
                 }
                 else if (strcmp(argv[i], "-h") == 0)
