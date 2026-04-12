@@ -5,3 +5,4 @@ bprintf
 *.un~
 *.swp
 *.out
+perf*

@@ -49,6 +49,12 @@
 void
 decorate(bool show_newline)
 {
+        /*
+         * This is the 'decorate' function.
+         * it can be used for changing the decoration
+         * behaviour.
+         */
+
         if (show_newline)
         {
                 putchar('\n');
@@ -67,50 +73,76 @@ main_loop()
         {
 
                 /* the main loop of the program,
-                 * you can customize components by adding or
-                 * removing them.
+                 * you can customize components by adding,
+                 * removing or uncommenting them.
                  */
 
-                run_command();
-                decorate(no_newline);
-                getfreememoryinfo();
-                cat_a_file();
-                decorate(no_newline);
-                brightness(1);
-                decorate(no_newline);
-                print_hostname();
-                decorate(no_newline);
-                getuseddiskinfo(partition);
-                decorate(no_newline);
-                getkernelversion();
-                decorate(no_newline);
-                getusedmeminfo();
-                decorate(no_newline);
-                readbatterycapacity();
-                decorate(no_newline);
-                uptime();
-                decorate(no_newline);
-                datetime(iso_format);
-                decorate(no_newline);
-                print_cpu_usage(0); /* percision: change '0' to
-                                 other number if you want some
-                                 percision for cpu usage. */
+                /* run_command(); */
 
+                /* decorate(no_newline); */
+                /* getfreememoryinfo(); */
+
+                /* cat_a_file(); */
+                /* decorate(no_newline); */
+
+                /* brightness(1); */
+                /* decorate(no_newline); */
+
+                /* print_hostname(); */
+                /* decorate(no_newline); */
+
+                /* getuseddiskinfo(partition); */
+                /* decorate(no_newline); */
+
+                /* getkernelversion(); */
+                /* decorate(no_newline); */
+
+                /* getusedmeminfo(); */
+                /* decorate(no_newline); */
+
+                /* readbatterycapacity(); */
+                /* decorate(no_newline); */
+
+                /* uptime(); */
+                /* decorate(no_newline); */
+
+                /*
+                 * precision: change '0' to
+                 * other number if you want some
+                 * precision for cpu usage.
+                 *
+                 */
+
+                /* print_cpu_usage(0); */
+                /* decorate(no_newline); */
+
+                /*
+                 * the datetime component is enabled for demonstration
+                 * purposes only.
+                 */
+
+                datetime(iso_format);
                 decorate(show_newline); /* adds newline */
 
+                /* this is needed for -1 argument, see: main() */
                 if (print_one_time == 1)
                 {
                         return;
                 }
 
-                fflush(stdout);  // needed for print STDOUT
-                sleep(INTERVAL); /// sleep value
+                /* 'fflush' needed for print STDOUT,flushes the buffer. */
+                fflush(stdout);
+                sleep(INTERVAL); /* sleep value */
         }
 }
 
 int
 main(int argc, char *argv[])
 {
+
+        /*
+         * Manual argument parsing using for loop and strcmp().
+         */
 
         for (int i = 1; i < argc; i++)
         {
