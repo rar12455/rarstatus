@@ -1,23 +1,24 @@
 PREFIX = /usr/local
-CC ?= cc
+CC = gcc
+LD = ld.lld
 # Wildcard automatically picks up all your component implementations
 SRC = main.c config.c util.c $(wildcard components/implementation/*.c)
 OBJ = ${SRC:.c=.o}
 
 # Base flags required for all builds
-BASE_CFLAGS = -std=c99 -Wall -Wextra -pedantic
-LDFLAGS = -static
+BASE_CFLAGS = -std=c99 -Wall -Wextra -pedantic -ffunction-sections -fdata-sections
+BASE_LDFLAGS = -Wl,--gc-sections 
 
 # --- Build Modes ---
 
 all: release
 
-release: CFLAGS += -O3 -flto -march=native -DNDEBUG
-release: LDFLAGS += -flto -s
+release: BASE_CFLAGS += -O3 -flto -march=native -DNDEBUG -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-stack-protector
+release: BASE_LDFLAGS += -flto -s
 release: clean rarstatus
 
 # Debug: Clang checks for errors, then GCC builds the binary
-debug: CFLAGS += -g -O0 -fno-omit-frame-pointer
+debug: BASE_CFLAGS += -g -O0 -fno-omit-frame-pointer
 debug: clean
 	@echo "--- Running Clang Static Analysis ---"
 	clang -fsyntax-only ${BASE_CFLAGS} ${CFLAGS} ${SRC}
@@ -27,7 +28,7 @@ debug: clean
 # --- Rules ---
 
 rarstatus: ${OBJ}
-	${CC} -o $@ ${OBJ} ${LDFLAGS}
+	${CC} -o $@ ${OBJ} ${BASE_LDFLAGS}
 
 ${OBJ}: config.h util.h
 
