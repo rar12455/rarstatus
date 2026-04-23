@@ -6,6 +6,9 @@
 /* Update interval in seconds */
 #define INTERVAL 1
 
+/* Define the "unknown" string, will be used for unknown data */
+#define UNKNOWN_STR "n/a"
+
 /* Brightness file paths */
 #define BRIGHTNESS_FILE_PATH "/sys/class/backlight/intel_backlight/brightness"
 #define MAX_BRIGHTNESS_FILE_PATH                                               \
