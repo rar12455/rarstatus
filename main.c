@@ -33,18 +33,18 @@
 
 /* include components that you want */
 
-#include "components/battery.h"
-#include "components/brightness.h"
-#include "components/cat_a_file.h"
-#include "components/cpu_usage.h"
+/* #include "components/battery.h" */
+/* #include "components/brightness.h" */
+/* #include "components/cat_a_file.h" */
+/* #include "components/cpu_usage.h" */
 #include "components/datetime.h"
-#include "components/freemem.h"
-#include "components/getkernelversion.h"
-#include "components/getuseddiskinfo.h"
-#include "components/printhostname.h"
-#include "components/run_command.h"
-#include "components/uptime.h"
-#include "components/usedmem.h"
+/* #include "components/freemem.h" */
+/* #include "components/getkernelversion.h" */
+/* #include "components/getuseddiskinfo.h" */
+/* #include "components/printhostname.h" */
+/* #include "components/run_command.h" */
+/* #include "components/uptime.h" */
+/* #include "components/usedmem.h" */
 
 void
 decorate(bool show_newline)
