@@ -36,7 +36,7 @@
 /* #include "components/battery.h" */
 /* #include "components/brightness.h" */
 /* #include "components/cat_a_file.h" */
-#include "components/cpu_usage.h"
+/* #include "components/cpu_usage.h" */
 #include "components/datetime.h"
 /* #include "components/freemem.h" */
 /* #include "components/getkernelversion.h" */
@@ -113,8 +113,8 @@ main_loop()
                  *
                  */
 
-                print_cpu_usage(0);
-                decorate(no_newline);
+                /* print_cpu_usage(0); */
+                /* decorate(no_newline); */
 
                 /*
                  * the datetime component is enabled for demonstration
