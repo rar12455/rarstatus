@@ -5,7 +5,6 @@
 #ifndef GETUSEDDISKINFO_H
 #define GETUSEDDISKINFO_H
 
-/* TODO: fix problematic char partition[30] limit */
-void getuseddiskinfo(char partition[30]);
+void getuseddiskinfo(const char *partition);
 
 #endif

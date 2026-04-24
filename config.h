@@ -28,6 +28,6 @@
 /* Variables defined in config.c */
 extern const bool  iso_format;
 extern const char *separator;
-extern char        partition[30];
+extern const char *partition;
 
 #endif

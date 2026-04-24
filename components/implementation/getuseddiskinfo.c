@@ -8,7 +8,7 @@
 #include "../print_human_readable_data.h"
 
 void
-getuseddiskinfo(char partition[30])
+getuseddiskinfo(const char *partition)
 {
         struct statvfs ds;
 
