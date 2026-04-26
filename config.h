@@ -25,9 +25,9 @@
 /* run_command setting */
 #define COMMAND_NAME "echo 'hello world!' "
 
-/* Variables defined in config.c */
-extern const bool  iso_format;
-extern const char *separator;
-extern const char *partition;
+/* other component settings */
+static const bool  iso_format = true;
+static const char *separator  = " | ";
+static const char *partition  = "/";
 
 #endif

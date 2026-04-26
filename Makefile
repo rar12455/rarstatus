@@ -2,7 +2,7 @@ PREFIX = /usr/local
 CC = gcc
 LD = ld.lld
 # Wildcard automatically picks up all your component implementations
-SRC = main.c config.c util.c $(wildcard components/implementation/*.c)
+SRC = main.c util.c $(wildcard components/implementation/*.c)
 OBJ = ${SRC:.c=.o}
 
 # Base flags required for all builds
