@@ -12,6 +12,13 @@ void
 run_command()
 {
         FILE *fp = popen(COMMAND_NAME, "r");
+
+        if (!fp)
+        {
+                perror("error: unable to run command");
+                return;
+        }
+
         char  buffer[256];
         while (fgets(buffer, sizeof(buffer), fp))
         {
