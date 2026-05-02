@@ -19,7 +19,6 @@ getusedmeminfo(void)
         if (!file)
         {
                 perror("Error opening: /proc/meminfo");
-                fclose(file);
                 return;
         }
 

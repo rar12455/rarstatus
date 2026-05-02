@@ -10,9 +10,9 @@
 void
 getfreememinfo(void)
 {
-        char  line[128];
-        FILE *file         = fopen("/proc/meminfo", "r");
-        int   MemAvailable = 0;
+        char               line[128];
+        FILE              *file         = fopen("/proc/meminfo", "r");
+        unsigned long long MemAvailable = 0;
 
         if (!file)
         {
@@ -29,5 +29,5 @@ getfreememinfo(void)
         }
         fclose(file);
         printf("RAM:");
-        print_human_readable_data((long long)MemAvailable);
+        print_human_readable_data((unsigned long long)MemAvailable);
 }
