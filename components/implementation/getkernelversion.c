@@ -6,7 +6,7 @@
 #include <sys/utsname.h>
 
 void
-getkernelversion()
+getkernelversion(void)
 {
         struct utsname name;
         if (uname(&name) == 0)

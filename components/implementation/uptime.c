@@ -6,7 +6,7 @@
 #include <sys/sysinfo.h>
 
 void
-uptime()
+uptime(void)
 {
         struct sysinfo info;
 

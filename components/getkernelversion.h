@@ -4,5 +4,7 @@
 
 #ifndef GETKERNELVERSION_H
 #define GETKERNELVERSION_H
-void getkernelversion();
+
+void getkernelversion(void);
+
 #endif

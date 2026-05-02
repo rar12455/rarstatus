@@ -18,7 +18,7 @@ a Wayland bar, dwm via xsetroot, a script, a log file, whatever you want.
 | Component | Function |
 | :--- | :--- |
 | CPU usage | `print_cpu_usage()` |
-| RAM (used / free) | `getusedmeminfo()` / `getfreememoryinfo()` |
+| RAM (used / free) | `getusedmeminfo()` / `getfreememinfo()` |
 | Disk usage | `getuseddiskinfo()` |
 | Battery | `readbatterycapacity()` |
 | Uptime | `uptime()` |

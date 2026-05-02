@@ -13,7 +13,7 @@
 #endif
 
 void
-print_hostname()
+print_hostname(void)
 {
         char hostname[HOST_NAME_MAX];
 

@@ -8,7 +8,7 @@
 #include "../../config.h"
 
 void
-cat_a_file()
+cat_a_file(void)
 {
         FILE *file;
         file = fopen(CAT_FILE_PATH, "r");

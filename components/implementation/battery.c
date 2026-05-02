@@ -8,7 +8,7 @@
 #include "../../config.h"
 
 void
-readbatterycapacity()
+readbatterycapacity(void)
 {
         FILE *file;
         int   capacitybat = 0;

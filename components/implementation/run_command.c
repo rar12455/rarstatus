@@ -9,7 +9,7 @@
 #include "../../config.h"
 
 void
-run_command()
+run_command(void)
 {
         FILE *fp = popen(COMMAND_NAME, "r");
 
@@ -19,7 +19,7 @@ run_command()
                 return;
         }
 
-        char  buffer[256];
+        char buffer[256];
         while (fgets(buffer, sizeof(buffer), fp))
         {
                 printf("%s", buffer);

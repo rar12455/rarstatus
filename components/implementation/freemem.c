@@ -8,7 +8,7 @@
 #include "../print_human_readable_data.h"
 
 void
-getfreememoryinfo()
+getfreememinfo(void)
 {
         char  line[128];
         FILE *file         = fopen("/proc/meminfo", "r");

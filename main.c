@@ -66,7 +66,7 @@ decorate(bool show_newline)
 }
 
 void
-main_loop()
+main_loop(void)
 {
 
         while (1)
@@ -80,7 +80,7 @@ main_loop()
                 /* run_command(); */
 
                 /* decorate(no_newline); */
-                /* getfreememoryinfo(); */
+                /* getfreememinfo(); */
 
                 /* cat_a_file(); */
                 /* decorate(no_newline); */

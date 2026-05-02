@@ -8,13 +8,13 @@
 #include "../print_human_readable_data.h"
 
 void
-getusedmeminfo()
+getusedmeminfo(void)
 {
-        char  line[128];
-        FILE *file         = fopen("/proc/meminfo", "r");
-        unsigned long long  MemTotal     = 0;
-        unsigned long long  MemAvailable = 0;
-        unsigned long long  found_count  = 0;
+        char               line[128];
+        FILE              *file         = fopen("/proc/meminfo", "r");
+        unsigned long long MemTotal     = 0;
+        unsigned long long MemAvailable = 0;
+        unsigned long long found_count  = 0;
 
         if (!file)
         {
@@ -27,7 +27,7 @@ getusedmeminfo()
         {
                 if (strncmp(line, "MemTotal:", 9) == 0)
                 {
-                        sscanf(line, "MemTotal: %llu", &MemTotal); 
+                        sscanf(line, "MemTotal: %llu", &MemTotal);
                         found_count++;
                 }
                 else if (strncmp(line, "MemAvailable:", 13) == 0)
