@@ -45,7 +45,7 @@ print_cpu_usage(const int cpu_usage_precision)
                     (total_second - total_first - (idle_second - idle_first)) /
                     (total_second - total_first);
 
-                printf("CPU:%.*f%%", cpu_usage_percision, cpu_usage);
+                printf("CPU:%.*f%%", cpu_usage_precision, cpu_usage);
         }
         else
         {
