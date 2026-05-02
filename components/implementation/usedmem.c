@@ -12,9 +12,9 @@ getusedmeminfo()
 {
         char  line[128];
         FILE *file         = fopen("/proc/meminfo", "r");
-        int   MemTotal     = 0;
-        int   MemAvailable = 0;
-        int   found_count  = 0;
+        unsigned long   MemTotal     = 0;
+        unsigned long   MemAvailable = 0;
+        unsigned long   found_count  = 0;
 
         if (!file)
         {
@@ -26,13 +26,12 @@ getusedmeminfo()
         {
                 if (strncmp(line, "MemTotal:", 9) == 0)
                 {
-                        sscanf(line, "MemTotal: %d", &MemTotal); /* NOLINT */
+                        sscanf(line, "MemTotal: %d", &MemTotal); 
                         found_count++;
                 }
                 else if (strncmp(line, "MemAvailable:", 13) == 0)
                 {
-                        sscanf(line, "MemAvailable: %d",
-                               &MemAvailable); /* NOLINT */
+                        sscanf(line, "MemAvailable: %d", &MemAvailable);
                         found_count++;
                 }
         }
@@ -40,13 +39,13 @@ getusedmeminfo()
 
         if (found_count == 2)
         {
-                int UsedMemory = MemTotal - MemAvailable;
+                unsigned long UsedMemory = MemTotal - MemAvailable;
                 printf("RAM:");
                 print_human_readable_data((long long)UsedMemory);
         }
         else
         {
-                printf("Error: Could not parse all required "
-                       "memory fields.\n");
+                printf("Error: Could not parse all required memory fields.\n");
+                return;
         }
 }

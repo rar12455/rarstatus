@@ -6,7 +6,7 @@
 #include <time.h>
 
 void
-datetime(int iso_format_val)
+datetime(bool iso_format_val)
 {
         time_t     raw_time;
         struct tm *local_time;

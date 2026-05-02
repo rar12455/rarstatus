@@ -26,11 +26,19 @@ brightness(int argc)
                         return;
                 }
 
-                fscanf(file, "%d", &brightness_val); /* NOLINT */
+                fscanf(file, "%d", &brightness_val); 
+
+                if (brightness_val == 0)
+                {
+                        /* if brightness_val is still 0, print error. */
+                        perror("error when reading brightness value");
+                        return;
+                }
+
                 printf("BRI:%d", brightness_val);
                 fclose(file);
         }
-        else
+        else if (argc == 1)
         {
                 FILE *file;
                 FILE *max_brightness_file;
@@ -46,23 +54,26 @@ brightness(int argc)
                         return;
                 }
 
-                fscanf(file, "%f", &brightness_val); /* NOLINT */
+                fscanf(file, "%f", &brightness_val); 
                 fclose(file);
 
                 max_brightness_file = fopen(MAX_BRIGHTNESS_FILE_PATH, "r");
 
                 if (!max_brightness_file)
                 {
-                        printf("file not found: %s\n",
-                               MAX_BRIGHTNESS_FILE_PATH);
+                        printf("file not found: %s\n",MAX_BRIGHTNESS_FILE_PATH);
                         return;
                 }
 
-                fscanf(max_brightness_file, "%f",
-                       &max_brightness_val); /* NOLINT */
+                fscanf(max_brightness_file, "%f", &max_brightness_val);  
                 fclose(max_brightness_file);
 
                 brightness_perc = brightness_val / max_brightness_val * 100;
                 printf("BRI:%.0f%%", brightness_perc);
+        }
+        else
+        {
+                printf("undefined mode: %d",argc);
+                return;
         }
 }
