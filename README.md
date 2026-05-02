@@ -4,7 +4,7 @@ A minimal, stdout-only system status printer for Linux. No Xlib. No Wayland deps
 Works with any bar or compositor that accepts piped input.
 
 ```
-2026-04-30 21:42 | RAM:3.14 GiB | CPU:4% | DISK:42.1 GiB | BAT:87%+
+2026-05-02 21:42 | RAM:3.14 GiB | CPU:4% | DISK:42.1 GiB | BAT:87%+
 ```
 
 ## Why not slstatus?
@@ -78,12 +78,17 @@ rarstatus | while read -r line; do xsetroot -name "$line"; done &
 ```
 
 ### With dwl or any Wayland bar (yambar, waybar custom module, etc.)
+Just pipe or redirect stdout into whatever your bar expects.
 
 ```sh
 rarstatus
 ```
+### For dwl with bar.patch applied you can just pipe it:
 
-Just pipe or redirect stdout into whatever your bar expects.
+```sh
+rarstatus | dwl
+```
+
 
 ### One-shot output (for scripts)
 
@@ -106,7 +111,7 @@ BSD support would require rewriting those components.
 
 ## Contributing
 
-Contributions welcome — new components, bug fixes, or BSD porting work.
+Contributions welcome, new components, bug fixes, or BSD porting work.
 Keep it minimal and dependency-free.
 
 ## License
