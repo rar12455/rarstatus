@@ -4,6 +4,9 @@
 
 #include <stdio.h>
 #include <time.h>
+#include <stdbool.h>
+
+#include "../datetime.h"
 
 void
 datetime(bool iso_format_val)

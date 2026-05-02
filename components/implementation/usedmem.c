@@ -12,13 +12,14 @@ getusedmeminfo()
 {
         char  line[128];
         FILE *file         = fopen("/proc/meminfo", "r");
-        unsigned long   MemTotal     = 0;
-        unsigned long   MemAvailable = 0;
-        unsigned long   found_count  = 0;
+        unsigned long long  MemTotal     = 0;
+        unsigned long long  MemAvailable = 0;
+        unsigned long long  found_count  = 0;
 
         if (!file)
         {
                 perror("Error opening: /proc/meminfo");
+                fclose(file);
                 return;
         }
 
@@ -26,22 +27,23 @@ getusedmeminfo()
         {
                 if (strncmp(line, "MemTotal:", 9) == 0)
                 {
-                        sscanf(line, "MemTotal: %d", &MemTotal); 
+                        sscanf(line, "MemTotal: %llu", &MemTotal); 
                         found_count++;
                 }
                 else if (strncmp(line, "MemAvailable:", 13) == 0)
                 {
-                        sscanf(line, "MemAvailable: %d", &MemAvailable);
+                        sscanf(line, "MemAvailable: %llu", &MemAvailable);
                         found_count++;
                 }
         }
+
         fclose(file);
 
         if (found_count == 2)
         {
-                unsigned long UsedMemory = MemTotal - MemAvailable;
+                unsigned long long UsedMemory = MemTotal - MemAvailable;
                 printf("RAM:");
-                print_human_readable_data((long long)UsedMemory);
+                print_human_readable_data((unsigned long long)UsedMemory);
         }
         else
         {
