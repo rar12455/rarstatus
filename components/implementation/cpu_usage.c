@@ -8,7 +8,7 @@
 #include <unistd.h>
 
 void
-print_cpu_usage(const int cpu_usage_percision)
+print_cpu_usage(const int cpu_usage_precision)
 {
 
         FILE              *file;

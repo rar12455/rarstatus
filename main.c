@@ -124,14 +124,15 @@ main_loop(void)
                 datetime(iso_format);
                 decorate(show_newline); /* adds newline */
 
+                /* 'fflush' needed for print STDOUT,flushes the buffer. */
+                fflush(stdout);
+
                 /* this is needed for -1 argument, see: main() */
-                if (print_one_time == 1)
+                if (print_one_time == true)
                 {
                         return;
                 }
 
-                /* 'fflush' needed for print STDOUT,flushes the buffer. */
-                fflush(stdout);
                 sleep(INTERVAL); /* sleep value */
         }
 }

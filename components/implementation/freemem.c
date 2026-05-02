@@ -24,7 +24,7 @@ getfreememinfo(void)
         {
                 if (strncmp(line, "MemAvailable:", 13) == 0)
                 {
-                        sscanf(line, "MemAvailable: %d", &MemAvailable);
+                        sscanf(line, "MemAvailable: %llu", &MemAvailable);
                 }
         }
         fclose(file);
