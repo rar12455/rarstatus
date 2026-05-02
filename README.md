@@ -1,100 +1,118 @@
 # rarstatus
 
-**A performance-oriented, Display Server agnostic, modern implementation of slstatus.**
+A minimal, stdout-only system status printer for Linux. No Xlib. No Wayland deps.
+Works with any bar or compositor that accepts piped input.
 
-`rarstatus` is a minimalist status monitor written in C, designed to be lightweight and fast. It follows the philosophy of "Doing one thing well" by fetching system information through direct Linux system calls and efficient file parsing, making it ideal for tiling window managers like `dwl` or `dwm`.
+```
+2026-04-30 21:42 | RAM:3.14 GiB | CPU:4% | DISK:42.1 GiB | BAT:87%+
+```
 
-##  Key Goals
+## Why not slstatus?
 
-* **Performance:** Minimize CPU cycles by using direct syscalls where possible (e.g., `statvfs`, `uname`).
-* **Agnosticism:** Designed to output to `stdout`, allowing it to work with any display server (Wayland/X11) or status bar that accepts piped input.
-* **No Bloat:** Avoids complex memory management (`malloc`) and advanced pointers to remain stable and predictable.
+slstatus pulls Xlib and writes directly to the X root window — it assumes you're
+on X11 and using dwm. rarstatus just prints to stdout, so you can pipe it anywhere:
+a Wayland bar, dwm via xsetroot, a script, a log file, whatever you want.
 
-##  Current Features
+## Features
 
-The following modules are currently implemented and functional:
-
-* **Memory (RAM):** Parses `/proc/meminfo` to calculate available memory.
-* **Disk Usage:** Uses the `statvfs` syscall to calculate used space by subtracting available blocks from total blocks.
-* **Kernel Version:** Uses the `uname` syscall to retrieve the `release` string directly from the kernel.
-* **Battery:** Reads capacity directly from `/sys/class/power_supply/`.
-* **Uptime:** Calculates system uptime in a human-readable format.
-* **DateTime:** Highly customizable date and time formatting.
-* **Hostname**: print hostname using efficient a syscall. 
-* **Brightness**: print Brightness value or percentage by parsing brightness file.
-* **Cat a file**: print a arbituary file as you wish.
-* **Run command**: print output of the command as you wish.
-* **Cpu usage**: print cpu usage in percantage.
-
-##  How It Works
-
-Internally, `rarstatus` uses a modular approach where each system metric is fetched by a dedicated function:
-
-1. **Syscall Execution:** Functions like `getkernelversion()` call the Linux kernel directly via `uname()`.
-2. **Data Processing:** Raw byte values are passed to `print_human_readable_data()`, which handles conversion to KiB, MiB, or GiB dynamically.
-3. **Output Decoration:** The `decorate()` function manages separators between modules without unnecessary string concatenation.
-
-## Compatibility & Supported Operating Systems
-
-### Supported operating systems
-
-'rarstatus' (currently) only works on GNU/Linux systems,while it doesn't have a major linux-spesific dependency, some components needs to rewritten to be usable on respected UNIX-like operating systems (such as BSD's). The OpenBSD support is planned and likely, it will be ready in a short ammount of time.
-
-### Libc and display server compatibility
-
-'rarstatus' is also musl-libc compatible,this makes it also a good candidate for static linking, which is **recommended**, it also supports Wayland/X11 out of the box without any configuration, virtually any system has a working STDIN/STDOUT, can access system information.
-
-As the table seen below summarizes the information:
-
-| Feature | Status |
+| Component | Function |
 | :--- | :--- |
-| **Musl/Glibc** | Works ✅ |
-| **Wayland/X11** | Works ✅ |
-| **BSD support?** | Mostly broken ❌ |
-| **OpenBSD support?** | Planned ⚠️ |
+| CPU usage | `print_cpu_usage()` |
+| RAM (used / free) | `getusedmeminfo()` / `getfreememoryinfo()` |
+| Disk usage | `getuseddiskinfo()` |
+| Battery | `readbatterycapacity()` |
+| Uptime | `uptime()` |
+| Date & time | `datetime()` |
+| Hostname | `print_hostname()` |
+| Brightness | `brightness()` |
+| Print a file | `cat_a_file()` |
+| Run a command | `run_command()` |
 
-##  Installation & Configuration
+## Installation
 
-Configuration is generally handled at compile-time via `config.h` but you can configure `main.c` which is where main logic exists.
-
-1. **Clone the repo:**
-```bash
+```sh
 git clone https://github.com/rar12455/rarstatus.git
 cd rarstatus
-
 ```
 
+Edit `config.h` to set paths (battery, brightness, etc.) and `main.c` to enable
+the components you want, then build:
 
-2. **Edit `config.h` or `main.c` to change the update interval, separators, etc.**
-3. **Build:**
-```bash
+```sh
 sudo make clean install
-
 ```
 
+## Configuration
 
+All configuration is done at compile time. Two files to know:
 
-### Usage
-
-To use `rarstatus` with a Wayland compositor like `dwl`:
-
-```bash
-./rarstatus | dwl
-
+**`config.h`** — paths, intervals, separators:
+```c
+#define INTERVAL 1          /* update interval in seconds */
+#define BATTERY_PATH "/sys/class/power_supply/BAT0/capacity"
+static const char *separator = " | ";
 ```
 
-Or for X11-based `dwm` using `xsetroot`:
-
-```bash
-while true; do xsetroot -name "$(./rarstatus)"; done
-
+**`main.c` / `main_loop()`** — uncomment the components you want:
+```c
+datetime(iso_format);
+decorate(no_newline);
+getusedmeminfo();
+decorate(no_newline);
+print_cpu_usage(0);
+decorate(show_newline);
 ```
 
-##  Contributing
+## Usage
 
-Since this is a hobbyist project, contributions are welcome. If you have a more efficient way to parse `/proc` or a new syscall-based module, feel free to open a Pull Request.
+### With dwm (X11) via xsetroot
 
-##  License
+```sh
+while true; do xsetroot -name "$(rarstatus -1)"; sleep 1; done
+```
 
-**NOTE:** This project is inspired by the modularity of slstatus, but it is written from scratch for performance and display-server agnosticism, thus it does not include **ISC License** notice.
-This project is licensed under the **GPL v3** License - see the LICENSE file for details.
+Or run it in the background and let it loop on its own:
+
+```sh
+rarstatus | while read -r line; do xsetroot -name "$line"; done &
+```
+
+### With dwl or any Wayland bar (yambar, waybar custom module, etc.)
+
+```sh
+rarstatus
+```
+
+Just pipe or redirect stdout into whatever your bar expects.
+
+### One-shot output (for scripts)
+
+```sh
+rarstatus -1
+```
+
+## Compatibility
+
+| | Status |
+| :--- | :--- |
+| glibc | ✅ |
+| musl libc | ✅ |
+| X11 | ✅ |
+| Wayland | ✅ |
+| BSD | ❌ (uses `/proc` and `sysinfo()`) |
+
+rarstatus is Linux-only. Several components depend on `/proc/` and `sysinfo()`.
+BSD support would require rewriting those components.
+
+## Contributing
+
+Contributions welcome — new components, bug fixes, or BSD porting work.
+Keep it minimal and dependency-free.
+
+## License
+
+GPL v3. See LICENSE.
+
+---
+
+*Inspired by the modularity of slstatus, written from scratch.*
