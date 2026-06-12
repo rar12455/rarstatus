@@ -12,17 +12,13 @@
 #define HOST_NAME_MAX 64
 #endif
 
-void
-print_hostname(void)
+void print_hostname(void)
 {
-        char hostname[HOST_NAME_MAX];
+	char hostname[HOST_NAME_MAX];
 
-        if (gethostname(hostname, sizeof(hostname)) == 0)
-        {
-                printf("HOST:%s", hostname);
-        }
-        else
-        {
-                printf("unknown-host");
-        }
+	if (gethostname(hostname, sizeof(hostname)) == 0) {
+		printf("HOST:%s", hostname);
+	} else {
+		printf("unknown-host");
+	}
 }

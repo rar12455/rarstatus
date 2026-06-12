@@ -46,137 +46,119 @@
 /* #include "components/uptime.h" */
 /* #include "components/usedmem.h" */
 
-void
-decorate(bool show_newline)
+void decorate(bool show_newline)
 {
-        /*
-         * This is the 'decorate' function.
-         * it can be used for changing the decoration
-         * behaviour.
-         */
+	/*
+	 * This is the 'decorate' function.
+	 * it can be used for changing the decoration
+	 * behaviour.
+	 */
 
-        if (show_newline)
-        {
-                putchar('\n');
-        }
-        else
-        {
-                fputs(separator, stdout);
-        }
+	if (show_newline) {
+		putchar('\n');
+	} else {
+		fputs(separator, stdout);
+	}
 }
 
-void
-main_loop(void)
+void main_loop(void)
 {
 
-        while (1)
-        {
+	while (1) {
 
-                /* the main loop of the program,
-                 * you can customize components by adding,
-                 * removing or uncommenting them.
-                 */
+		/* the main loop of the program,
+		 * you can customize components by adding,
+		 * removing or uncommenting them.
+		 */
 
-                /* run_command(); */
+		/* run_command(); */
 
-                /* decorate(no_newline); */
-                /* getfreememinfo(); */
+		/* decorate(no_newline); */
+		/* getfreememinfo(); */
 
-                /* cat_a_file(); */
-                /* decorate(no_newline); */
+		/* cat_a_file(); */
+		/* decorate(no_newline); */
 
-                /* brightness(1); */
-                /* decorate(no_newline); */
+		/* brightness(1); */
+		/* decorate(no_newline); */
 
-                /* print_hostname(); */
-                /* decorate(no_newline); */
+		/* print_hostname(); */
+		/* decorate(no_newline); */
 
-                /* getuseddiskinfo(partition); */
-                /* decorate(no_newline); */
+		/* getuseddiskinfo(partition); */
+		/* decorate(no_newline); */
 
-                /* getkernelversion(); */
-                /* decorate(no_newline); */
+		/* getkernelversion(); */
+		/* decorate(no_newline); */
 
-                /* getusedmeminfo(); */
-                /* decorate(no_newline); */
+		/* getusedmeminfo(); */
+		/* decorate(no_newline); */
 
-                /* readbatterycapacity(); */
-                /* decorate(no_newline); */
+		/* readbatterycapacity(); */
+		/* decorate(no_newline); */
 
-                /* uptime(); */
-                /* decorate(no_newline); */
+		/* uptime(); */
+		/* decorate(no_newline); */
 
-                /*
-                 * precision: change '0' to
-                 * other number if you want some
-                 * precision for cpu usage.
-                 *
-                 */
+		/*
+		 * precision: change '0' to
+		 * other number if you want some
+		 * precision for cpu usage.
+		 *
+		 */
 
-                /* print_cpu_usage(0); */
-                /* decorate(no_newline); */
+		/* print_cpu_usage(0); */
+		/* decorate(no_newline); */
 
-                /*
-                 * the datetime component is enabled for demonstration
-                 * purposes only.
-                 */
+		/*
+		 * the datetime component is enabled for demonstration
+		 * purposes only.
+		 */
 
-                datetime(iso_format);
-                decorate(show_newline); /* adds newline */
+		datetime(iso_format);
+		decorate(show_newline); /* adds newline */
 
-                /* 'fflush' needed for print STDOUT,flushes the buffer. */
-                fflush(stdout);
+		/* 'fflush' needed for print STDOUT,flushes the buffer. */
+		fflush(stdout);
 
-                /* this is needed for -1 argument, see: main() */
-                if (print_one_time == true)
-                {
-                        return;
-                }
+		/* this is needed for -1 argument, see: main() */
+		if (print_one_time == true) {
+			return;
+		}
 
-                sleep(INTERVAL); /* sleep value */
-        }
+		sleep(INTERVAL); /* sleep value */
+	}
 }
 
-int
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 
-        /*
-         * Manual argument parsing using for loop and strcmp().
-         */
+	/*
+	 * Manual argument parsing using for loop and strcmp().
+	 */
 
-        for (int i = 1; i < argc; i++)
-        {
-                if (strcmp(argv[i], "-v") == 0)
-                {
-                        printf("rarstatus v1.1\n");
-                        return 0;
-                }
-                else if (strcmp(argv[i], "-h") == 0)
-                {
-                        printf("usage: [-v = version] "
-                               "[-h = help] [-1 print "
-                               "one time]\n");
-                        return 0;
-                }
-                else if (strcmp(argv[i], "-1") == 0)
-                {
-                        print_one_time = 1;
-                        main_loop();
-                        return 0;
-                }
-                else if (argv[i][0] == '-')
-                {
-                        printf("undefined argument: %s\n", argv[i]);
-                        return 1;
-                }
-                else
-                {
-                        printf("not an argument: %s\n", argv[i]);
-                        return 1;
-                }
-        }
+	for (int i = 1; i < argc; i++) {
+		if (strcmp(argv[i], "-v") == 0) {
+			printf("rarstatus v1.1\n");
+			return 0;
+		} else if (strcmp(argv[i], "-h") == 0) {
+			printf("usage: [-v = version] "
+			       "[-h = help] [-1 print "
+			       "one time]\n");
+			return 0;
+		} else if (strcmp(argv[i], "-1") == 0) {
+			print_one_time = 1;
+			main_loop();
+			return 0;
+		} else if (argv[i][0] == '-') {
+			printf("undefined argument: %s\n", argv[i]);
+			return 1;
+		} else {
+			printf("not an argument: %s\n", argv[i]);
+			return 1;
+		}
+	}
 
-        main_loop();
-        return 0;
+	main_loop();
+	return 0;
 }

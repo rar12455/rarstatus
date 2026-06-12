@@ -11,8 +11,8 @@
 
 /* Brightness file paths */
 #define BRIGHTNESS_FILE_PATH "/sys/class/backlight/intel_backlight/brightness"
-#define MAX_BRIGHTNESS_FILE_PATH                                               \
-        "/sys/class/backlight/intel_backlight/max_brightness"
+#define MAX_BRIGHTNESS_FILE_PATH \
+	"/sys/class/backlight/intel_backlight/max_brightness"
 
 /* Battery paths */
 #define BATTERY_PATH "/sys/class/power_supply/BAT0/capacity"
@@ -26,8 +26,8 @@
 #define COMMAND_NAME "echo 'hello world!' "
 
 /* other component settings */
-static const bool  iso_format = true;
-static const char *separator  = " | ";
-static const char *partition  = "/";
+static const bool iso_format = true;
+static const char *separator = " | ";
+static const char *partition = "/";
 
 #endif

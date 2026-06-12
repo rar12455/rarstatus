@@ -5,16 +5,12 @@
 #include <stdio.h>
 #include <sys/utsname.h>
 
-void
-getkernelversion(void)
+void getkernelversion(void)
 {
-        struct utsname name;
-        if (uname(&name) == 0)
-        {
-                printf("KERN:%s", name.release);
-        }
-        else
-        {
-                printf("error: Kernel version not found.");
-        }
+	struct utsname name;
+	if (uname(&name) == 0) {
+		printf("KERN:%s", name.release);
+	} else {
+		printf("error: Kernel version not found.");
+	}
 }

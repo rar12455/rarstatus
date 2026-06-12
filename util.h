@@ -7,7 +7,7 @@
 
 #include <stdbool.h>
 
-extern int        print_one_time;
+extern int print_one_time;
 extern const bool show_newline;
 extern const bool no_newline;
 

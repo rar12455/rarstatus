@@ -8,21 +8,18 @@
 
 #include "../../config.h"
 
-void
-run_command(void)
+void run_command(void)
 {
-        FILE *fp = popen(COMMAND_NAME, "r");
+	FILE *fp = popen(COMMAND_NAME, "r");
 
-        if (!fp)
-        {
-                perror("error: unable to run command");
-                return;
-        }
+	if (!fp) {
+		perror("error: unable to run command");
+		return;
+	}
 
-        char buffer[256];
-        while (fgets(buffer, sizeof(buffer), fp))
-        {
-                printf("%s", buffer);
-        }
-        pclose(fp);
+	char buffer[256];
+	while (fgets(buffer, sizeof(buffer), fp)) {
+		printf("%s", buffer);
+	}
+	pclose(fp);
 }

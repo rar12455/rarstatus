@@ -1,20 +1,35 @@
 ---
 Language: C
-# This sets the base to a style that prefers broken braces
-BreakBeforeBraces: Allman
-
-# This forces the return type to be on its own line for all functions
-AlwaysBreakAfterReturnType: AllDefinitions
-
-# Tab and Indentation settings
-UseTab: Never                                            
-IndentWidth: 8                                                               
-TabWidth: 8                                                          
-
-# General cleanup
+BasedOnStyle: LLVM
+IndentWidth: 8
+UseTab: ForIndentation
+TabWidth: 8
 ColumnLimit: 80
-AllowShortFunctionsOnASingleLine: false
-IndentCaseLabels: true
-AlignConsecutiveAssignments: true
-AlignConsecutiveDeclarations: true
----
+
+# Function and brace style
+BreakBeforeBraces: Linux
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+
+# Spacing
+SpaceAfterCStyleCast: false
+SpaceBeforeParens: ControlStatements
+SpaceInEmptyParentheses: false
+SpacesInCStyleCastParentheses: false
+SpacesBeforeTrailingComments: 1
+
+# Pointer alignment
+PointerAlignment: Right
+
+# Line breaking
+PenaltyExcessCharacter: 1000000
+PenaltyReturnTypeOnItsOwnLine: 100000
+
+# Alignment
+AlignTrailingComments: true
+AlignEscapedNewlines: Left
+
+# Other
+SortIncludes: CaseSensitive
+ReflowComments: true
