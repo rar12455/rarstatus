@@ -1,7 +1,5 @@
 PREFIX = /usr/local
-CC = gcc
-LD = ld.lld
-# Wildcard automatically picks up all your component implementations
+CC = cc
 SRC = main.c util.c $(wildcard components/implementation/*.c)
 OBJ = ${SRC:.c=.o}
 
@@ -9,23 +7,15 @@ OBJ = ${SRC:.c=.o}
 BASE_CFLAGS = -std=c99 -Wall -Wextra -pedantic -ffunction-sections -fdata-sections
 BASE_LDFLAGS = -Wl,--gc-sections 
 
-# --- Build Modes ---
-
 all: release
 
 release: BASE_CFLAGS += -O3 -flto -march=native -DNDEBUG -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-stack-protector
 release: BASE_LDFLAGS += -flto -s
 release: clean rarstatus
 
-# Debug: Clang checks for errors, then GCC builds the binary
 debug: BASE_CFLAGS += -g -O0 -fno-omit-frame-pointer
 debug: clean
-	@echo "--- Running Clang Static Analysis ---"
-	clang -fsyntax-only ${BASE_CFLAGS} ${CFLAGS} ${SRC}
-	@echo "--- Building with GCC ---"
-	$(MAKE) rarstatus CC=gcc CFLAGS="${CFLAGS}"
-
-# --- Rules ---
+	$(MAKE) rarstatus CFLAGS="${CFLAGS}"
 
 rarstatus: ${OBJ}
 	${CC} -o $@ ${OBJ} ${BASE_LDFLAGS}
